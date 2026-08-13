@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Добавить кроссовок — SNKR.RANK{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <h1 class="page-title">➕ Добавить кроссовок</h1>
+        <div class="card-sneaker p-4">
+            <form method="POST" action="{{ url_for('add_view') }}" class="form-custom">
+                {{ form.hidden_tag() }}
+
+                <div class="mb-3">
+                    {{ form.title.label }}
+                    {{ form.title(class="form-control", placeholder="Nike Dunk Low") }}
+                    {% for error in form.title.errors %}
+                        <div class="text-danger small">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        {{ form.price_male.label }}
+                        {{ form.price_male(class="form-control", placeholder="850") }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        {{ form.price_princess.label }}
+                        {{ form.price_princess(class="form-control", placeholder="790") }}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    {{ form.description.label }}
+                    {{ form.description(class="form-control", rows="4", placeholder="Почему эта модель крутая?") }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.source.label }}
+                    {{ form.source(class="form-control", placeholder="https://example.com/shoe") }}
+                </div>
+
+                <div class="d-grid">
+                    {{ form.submit(class="btn-gradient btn-lg") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

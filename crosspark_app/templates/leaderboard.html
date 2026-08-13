@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Лидерборд — SNKR.RANK{% endblock %}
+
+{% block content %}
+<h1 class="page-title">🏆 Лидерборд</h1>
+
+<div class="row g-4">
+    <!-- Пример карточки (потом заменишь на цикл) -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card-sneaker">
+            <img src="https://via.placeholder.com/400x200/1a1a1a/fff?text=NIKE+DUNK" alt="Nike Dunk">
+            <div class="p-4">
+                <h5 class="fw-bold">Nike Dunk Low</h5>
+                <div class="d-flex gap-2 mb-2">
+                    <span class="badge-male">👞 муж. ¥850</span>
+                    <span class="badge-female">👠 жен. ¥790</span>
+                </div>
+                <p class="text-muted small">Классика, которая никогда не выйдет из моды.</p>
+                <a href="#" class="btn btn-primary-custom w-100 btn-sm">Подробнее</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Добавь ещё карточки через цикл -->
+    {% for shoe in shoes %}
+    <div class="col-md-6 col-lg-4">
+        <div class="card-sneaker">
+            <img src="{{ shoe.image }}" alt="{{ shoe.title }}">
+            <div class="p-4">
+                <h5 class="fw-bold">{{ shoe.title }}</h5>
+                <div class="d-flex gap-2 mb-2">
+                    <span class="badge-male">👞 муж. ¥{{ shoe.price_male }}</span>
+                    <span class="badge-female">👠 жен. ¥{{ shoe.price_princess }}</span>
+                </div>
+                <p class="text-muted small">{{ shoe.description[:60] }}...</p>
+                <a href="{{ shoe.source }}" class="btn btn-primary-custom w-100 btn-sm" target="_blank">Смотреть</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
