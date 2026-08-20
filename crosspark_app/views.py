@@ -12,29 +12,26 @@ def index_view():
 def leaderboard_view():
     return render_template('leaderboard.html')
 
-@app.route('/add')
-def add_view():
+@app.route('/changeminder')
+def changeminder_view():
     return render_template('add.html')
 
-@app.route('/changeminder', methods=['GET', 'POST'])
-def changeminder_view():
-    form = CrossAddForm
+@app.route('/add', methods=['GET', 'POST'])
+def add_view():
+    form = CrossAddForm()
     if form.validate_on_submit():
-        text = form.text.data
-        if Cross.query.filter_by(text=text).first() is not None:
+        title = form.title.data
+        if Cross.query.filter_by(title=title).first() is not None:
             flash('Эта модель уже есть!')
             return render_template('add.html', form=form)
-        cross
-    return render_template('changeminder.html')
-
-
-
-        opinion = Opinion(
-            title=form.title.data,
-            text=text,
-            source=form.source.data
+        cross = Cross(
+            title = title,
+            price_male = form.price_male.data,
+            price_princess = form.price_princess.data,
+            description = form.description.data,
+            source = form.source.data,
         )
-        db.session.add(opinion)
+        db.session.add(cross)
         db.session.commit()
-        return redirect(url_for('opinion_view', id=opinion.id))
-    return render_template('add_opinion.html', form=form)
+        return 'nice'
+    return render_template('add.html')
