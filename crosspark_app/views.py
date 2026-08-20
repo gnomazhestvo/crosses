@@ -1,7 +1,7 @@
 from . import app, db
 from . forms import CrossAddForm
 from .models import Cross
-from flask import render_template, flash
+from flask import render_template, flash, redirect, url_for
 
 
 @app.route('/')
@@ -10,7 +10,8 @@ def index_view():
 
 @app.route('/leaderboard')
 def leaderboard_view():
-    return render_template('leaderboard.html')
+    shoes = Cross.query.all()
+    return render_template('leaderboard.html', shoes=shoes)
 
 @app.route('/changeminder')
 def changeminder_view():
@@ -33,5 +34,6 @@ def add_view():
         )
         db.session.add(cross)
         db.session.commit()
-        return 'nice'
-    return render_template('add.html')
+        flash('Кроссовок добавлен')
+        return redirect(url_for('add_view'))
+    return render_template('add.html', form = form)
