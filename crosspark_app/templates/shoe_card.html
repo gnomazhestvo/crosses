@@ -1,0 +1,27 @@
+<div class="card-sneaker h-100">
+    <img src="{{ shoe.image }}" alt="{{ shoe.title }}" class="card-img-top">
+    <div class="p-4">
+        <h5 class="fw-bold">{{ shoe.title }}</h5>
+        <div class="d-flex gap-2 mb-2">
+            {% if shoe.price_male %}
+                <span class="badge-male">👞 муж. ¥{{ shoe.price_male }}</span>
+            {% endif %}
+            {% if shoe.price_princess %}
+                <span class="badge-female">👠 жен. ¥{{ shoe.price_princess }}</span>
+            {% endif %}
+        </div>
+        <p class="text-muted small">{{ shoe.description[:60] }}</p>
+        <p class="text-muted small">{{ shoe.rating }}</p>
+        <div class="d-flex justify-content-center align-items-center">
+            <form method="POST" actino="/vote" style="display:inline">
+                <input type="hidden" name="winner_id" value="{{ shoe.id }}">
+                <input type="hidden" name="loser_id" value="{{ other_shoe.id }}">
+                <button type="submit" class="btn btn-gradient btn-sm">
+                    <a href="{{ url_for('vote_view', winner_id=shoe.id, loser_id=other_shoe.id) }}" class="btn btn-primary">
+                        Выбрать
+                    </a>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

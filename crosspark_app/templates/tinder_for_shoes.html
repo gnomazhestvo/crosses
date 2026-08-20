@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Изменить рейтинг — SNKR.RANK{% endblock %}
+
+{% block content %}
+<div class="text-center py-4">
+    <h1 class="page-title">🔄 Sneaker battle</h1>
+    <p class="text-muted">Выбери модель, которая больше нравится</p>
+</div>
+
+{% if error %}
+<div class="alert-warning text-center">{{ error }}</div>
+{% else %}
+<div class="row g-4 justify-content-center" id="tinder_container">
+    <div class="col md-5" id="shoe1">
+        {% set shoe=shoe1 %}
+        {% set other_shoe=shoe2 %}
+        {% include 'shoe_card.html' %}
+    </div>
+    <div class="col-md-2 text-center d-flex align-items-center justify-content-center">
+        VS
+    </div>
+    <div class="col md-5" id="shoe2">
+        {% set shoe=shoe2 %}
+        {% set other_shoe=shoe1 %}
+        {% include 'shoe_card.html' %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}

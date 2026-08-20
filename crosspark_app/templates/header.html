@@ -6,9 +6,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navMenu">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="/leaderboard">Rating</a></li>
-                <li class="nav-item"><a class="nav-link" href="/add">Добавить модель</a></li>
-                <li class="nav-item"><a class="nav-link" href="/changeminder">Mindchanger</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('leaderboard_view') }}">Leaderboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('add_view') }}">Добавить модель</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('tinder_for_shoes_view') }}">Mindchanger</a></li>
             </ul>
         </div>
     </div>
