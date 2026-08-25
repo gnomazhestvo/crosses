@@ -21,7 +21,7 @@ def tinder_for_shoes_view():
     shoes = Cross.query.all()
 
     if len(shoes) < 2:
-        return render_template('tinder_for_shoes_view.html', error = 'Добавь еще моделей')
+        return render_template('tinder_for_shoes.html', error = 'Добавь еще моделей')
 
     shoe1, shoe2 = random.sample(shoes, 2)
     return render_template('tinder_for_shoes.html', shoe1=shoe1, shoe2=shoe2)
