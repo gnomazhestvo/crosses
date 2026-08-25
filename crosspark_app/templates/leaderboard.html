@@ -3,25 +3,45 @@
 {% block title %}Лидерборд — SNKR.RANK{% endblock %}
 
 {% block content %}
-<h1 class="page-title">🏆 Лидерборд</h1>
-
-    <!-- Добавь ещё карточки через цикл -->
-    {% for shoe in shoes %}
-    <div class="col-md-6 col-lg-4">
-        <div class="card-sneaker">
-            <img src="{{ shoe.image }}" alt="{{ shoe.title }}">
-            <div class="p-4">
-                <h5 class="fw-bold">{{ shoe.title }}</h5>
-                <div class="d-flex gap-2 mb-2">
-                    <span class="badge-male">👞 муж. ¥{{ shoe.price_male }}</span>
-                    <span class="badge-female">👠 жен. ¥{{ shoe.price_princess }}</span>
-                </div>
-                <p class="text-muted small">{{ shoe.description[:60] }}...</p>
-                <p class="text-muted small">Рейтинг: {{ shoe.rating }}</p>
-                <a href="{{ shoe.source }}" class="btn btn-primary-custom w-100 btn-sm" target="_blank">Смотреть</a>
-            </div>
+<div class="main-page">
+    <div class="container">
+        
+        <!-- Заголовок -->
+        <div class="d-flex align-items-center gap-3 mb-4">
+            <div class="icon-box" style="width: 48px; height: 48px; font-size: 24px;">🏆</div>
+            <h1 class="section-title mb-0" style="font-size: 32px;">Лидерборд</h1>
         </div>
+
+        <!-- Сетка кроссовок -->
+        <div class="row g-4">
+            {% for shoe in shoes %}
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card card-hub card-sneaker" style="background-image: url('{{ shoe.image }}'); min-height: 350px;">
+                    
+                    <!-- Рейтинг -->
+                    <span class="rating-badge">★ {{ shoe.rating }}</span>
+                    
+                    <!-- Информация -->
+                    <div>
+                        <h5 class="sneaker-name mb-2" style="font-size: 20px;">{{ shoe.title }}</h5>
+                        
+                        <div class="d-flex gap-2 mb-3">
+                            <span class="badge-price">¥{{ shoe.price_male }}</span>
+                            <span class="badge-price">¥{{ shoe.price_princess }}</span>
+                        </div>
+                        
+                        <p class="sneaker-desc mb-3">{{ shoe.description[:60] }}...</p>
+                        
+                        <a href="{{ shoe.source }}" class="btn btn-accent btn-sm w-100" target="_blank">
+                            Смотреть
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
     </div>
-    {% endfor %}
 </div>
 {% endblock %}

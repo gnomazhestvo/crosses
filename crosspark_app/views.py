@@ -71,6 +71,7 @@ def add_view():
             price_princess=form.price_princess.data,
             description=form.description.data,
             source=form.source.data,
+            image_url=form.image_url.data
         )
         db.session.add(cross)
         db.session.commit()

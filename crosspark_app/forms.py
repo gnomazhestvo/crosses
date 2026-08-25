@@ -36,4 +36,10 @@ class CrossAddForm(FlaskForm):
             Length(1, 256, message='Длина не более 256 символов')
         ]
     )
+    image_url = URLField(
+        'Ссылка на фото',
+        validators=[
+            Length(1, 500, message='Длина не более 500 символов')
+        ]
+    )
     submit = SubmitField('Добавить')

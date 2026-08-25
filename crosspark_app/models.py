@@ -8,6 +8,7 @@ class Cross(db.Model):
     price_princess = db.Column(db.Float)
     description = db.Column(db.Text, unique=True, nullable=False)
     source = db.Column(db.String(256), nullable=False)
+    image_url = db.Column(db.String(500), nullable=False)
     rating = db.Column(db.Float, default=1200)
     place_on_leaderboard = db.Column(db.Integer)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)

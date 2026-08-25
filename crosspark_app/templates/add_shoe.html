@@ -3,46 +3,84 @@
 {% block title %}Добавить кроссовок — SNKR.RANK{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-lg-8">
-        <h1 class="page-title">➕ Добавить кроссовок</h1>
-        <div class="card-sneaker p-4">
-            <form method="POST" action="{{ url_for('add_view') }}" class="form-custom">
-                {{ form.hidden_tag() }}
-
-                <div class="mb-3">
-                    {{ form.title.label }}
-                    {{ form.title(class="form-control", placeholder="Nike Dunk Low") }}
-                    {% for error in form.title.errors %}
-                        <div class="text-danger small">{{ error }}</div>
-                    {% endfor %}
+<div class="main-page">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                
+                <!-- Заголовок -->
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="icon-box" style="width: 48px; height: 48px; font-size: 24px;">➕</div>
+                    <h1 class="section-title mb-0" style="font-size: 32px;">Добавить кроссовок</h1>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        {{ form.price_male.label }}
-                        {{ form.price_male(class="form-control", placeholder="850") }}
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        {{ form.price_princess.label }}
-                        {{ form.price_princess(class="form-control", placeholder="790") }}
-                    </div>
+                <!-- Форма -->
+                <div class="card card-hub card-hero" style="min-height: auto; padding: 32px;">
+                    <form method="POST" action="{{ url_for('add_view') }}" class="form-custom">
+                        {{ form.hidden_tag() }}
+
+                        <!-- Название -->
+                        <div class="mb-4">
+                            <label class="form-label-custom">{{ form.title.label.text }}</label>
+                            {{ form.title(class="form-control form-control-custom", placeholder="Nike Dunk Low") }}
+                            {% for error in form.title.errors %}
+                                <div class="text-danger small mt-1">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Цены -->
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label-custom">{{ form.price_male.label.text }}</label>
+                                {{ form.price_male(class="form-control form-control-custom", placeholder="850") }}
+                                {% for error in form.price_male.errors %}
+                                    <div class="text-danger small mt-1">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label-custom">{{ form.price_princess.label.text }}</label>
+                                {{ form.price_princess(class="form-control form-control-custom", placeholder="790") }}
+                                {% for error in form.price_princess.errors %}
+                                    <div class="text-danger small mt-1">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- Описание -->
+                        <div class="mb-4">
+                            <label class="form-label-custom">{{ form.description.label.text }}</label>
+                            {{ form.description(class="form-control form-control-custom", rows="4", placeholder="Почему эта модель крутая?") }}
+                            {% for error in form.description.errors %}
+                                <div class="text-danger small mt-1">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Источник -->
+                        <div class="mb-4">
+                            <label class="form-label-custom">{{ form.source.label.text }}</label>
+                            {{ form.source(class="form-control form-control-custom", placeholder="https://example.com/shoe") }}
+                            {% for error in form.source.errors %}
+                                <div class="text-danger small mt-1">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Фото -->
+                        <div class="mb-4">
+                            <label class="form-label-custom">{{ form.image_url.label.text }}</label>
+                            {{ form.image_url(class="form-control form-control-custom", placeholder="https://example.com/shoe.jpg") }}
+                            {% for error in form.image_url.errors %}
+                                <div class="text-danger small mt-1">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Кнопка -->
+                        <div class="d-grid">
+                            {{ form.submit(class="btn btn-accent btn-lg") }}
+                        </div>
+                    </form>
                 </div>
 
-                <div class="mb-3">
-                    {{ form.description.label }}
-                    {{ form.description(class="form-control", rows="4", placeholder="Почему эта модель крутая?") }}
-                </div>
-
-                <div class="mb-3">
-                    {{ form.source.label }}
-                    {{ form.source(class="form-control", placeholder="https://example.com/shoe") }}
-                </div>
-
-                <div class="d-grid">
-                    {{ form.submit(class="btn-gradient btn-lg") }}
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>

@@ -1,16 +1,36 @@
-    <header class="d-flex justify-content-center py-3">
-      <ul class="nav nav-pills">
-        <li class="nav-item">
-            <a href="{{ url_for('index_view') }}" class="nav-link {% if request.endpoint == 'index_view' %}active{% endif %}" aria-current="page">Главная</a>
-        </li>
-        <li class="nav-item">
-            <a href="{{ url_for('leaderboard_view') }}" class="nav-link {% if request.endpoint == 'leaderboard_view' %}active{% endif %}">Рейтинг</a>
-        </li>
-        <li class="nav-item">
-            <a href="{{ url_for('add_view') }}" class="nav-link {% if request.endpoint == 'add_view' %}active{% endif %}">Добавить модель</a>
-        </li>
-        <li class="nav-item">
-            <a href="{{ url_for('tinder_for_shoes_view') }}" class="nav-link {% if request.endpoint == 'tinder_for_shoes_view' %}active{% endif %}">Mindchanger</a>
-        </li>
-      </ul>
-    </header>
+<header class="header-custom">
+    <div class="container">
+        <nav class="d-flex justify-content-between align-items-center">
+            <a href="{{ url_for('index_view') }}" class="logo-custom text-decoration-none">
+                SNKR.<span class="logo-accent">RANK</span>
+            </a>
+
+            <ul class="nav nav-custom">
+                <li class="nav-item">
+                    <a href="{{ url_for('index_view') }}" 
+                       class="nav-link-custom {% if request.endpoint == 'index_view' %}active{% endif %}">
+                        Главная
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('leaderboard_view') }}" 
+                       class="nav-link-custom {% if request.endpoint == 'leaderboard_view' %}active{% endif %}">
+                        Рейтинг
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('add_view') }}" 
+                       class="nav-link-custom {% if request.endpoint == 'add_view' %}active{% endif %}">
+                        Добавить модель
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('tinder_for_shoes_view') }}" 
+                       class="nav-link-custom {% if request.endpoint == 'tinder_for_shoes_view' %}active{% endif %}">
+                        Mindchanger
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>

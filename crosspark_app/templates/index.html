@@ -3,13 +3,133 @@
 {% block title %}Главная — SNKR.RANK{% endblock %}
 
 {% block content %}
-<div class="text-center py-5" style="margin-top: 2rem;">
-    <h1 class="display-3 fw-bold">SNKR.<span class="gradient-text">RANK</span></h1>
-    <p class="lead text-muted">Твой личный топ кроссовок среди друзей</p>
-    <div class="d-flex flex-column align-items-center gap-3 mt-4">
-        <a href="{{ url_for('leaderboard_view') }}" class="btn btn-gradient btn-lg px-5" style="min-width: 220px;">🏆 Лидерборд</a>
-        <a href="{{ url_for('add_view') }}" class="btn btn-primary-custom btn-lg px-5" style="min-width: 220px;">➕ Добавить кроссовок</a>
-        <a href="{{ url_for('tinder_for_shoes_view') }}" class="btn btn-outline-dark btn-lg px-5" style="min-width: 220px; border-radius: 40px;">🔄 Изменить рейтинг</a>
+<div class="main-page">
+    <div class="container-fluid">
+        <div class="row g-4">
+            
+            <!-- Hero-карточка -->
+            <div class="col-12 col-lg-5">
+                <div class="card card-hub card-hero">
+                    <div class="icon-box mb-4">👟</div>
+                    <div>
+                        <h1 class="section-title" style="font-size: 38px; line-height: 1.2;">
+                            Оценивай и открывай лучшие силуэты
+                        </h1>
+                        <p class="section-text" style="color: var(--text-secondary); max-width: 504px;">
+                            Свободная сникер-платформа, формируемая сообществом. Голосуй за любимые кроссовки, добавляй новые релизы и находи идеальные пары.
+                        </p>
+                    </div>
+                    <div class="d-flex align-items-center gap-4 mt-4">
+                        <a href="#" class="link-light">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Лидерборд -->
+            <div class="col-12 col-md-6 col-lg-3">
+                <a href="{{ url_for('leaderboard_view') }}" class="text-decoration-none">
+                    <div class="card card-hub card-leaderboard">
+                        <div>
+                            <span class="section-label" style="opacity: 0.8;">РАЗДЕЛ</span>
+                            <h2 class="section-title">Лидерборд</h2>
+                            <p class="section-text">
+                                Рейтинг кроссовок на основе оценок пользователей
+                            </p>
+                        </div>
+                        <span class="link-light">Перейти к рейтингу →</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Кроссовок 1: Nike -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card card-hub card-sneaker" style="background-image: url('{{ url_for('static', filename='images/nike_air_max_plus.jpg') }}');">
+                    <span class="rating-badge">★ 9.8</span>
+                    <div>
+                        <div class="sneaker-brand">NIKE</div>
+                        <div class="sneaker-name">Air Max Plus Sunset</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Кроссовок 2: Adidas -->
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card card-hub card-sneaker" style="background-image: url('{{ url_for('static', filename='images/adidas_samba.jpg') }}');">
+                    <span class="rating-badge">★ 9.2</span>
+                    <div>
+                        <div class="sneaker-brand">ADIDAS</div>
+                        <div class="sneaker-name">Samba OG Black</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Добавить модель -->
+            <div class="col-12 col-lg-5">
+                <a href="{{ url_for('add_view') }}" class="text-decoration-none">
+                    <div class="card card-hub card-hero" style="min-height: 230px; padding: 32px;">
+                        <div class="icon-box mb-3">➕</div>
+                        <div>
+                            <h2 class="section-title" style="font-size: 22px;">Добавить модель</h2>
+                            <p class="section-text" style="color: var(--text-secondary);">
+                                Не нашли свои любимые кроссовки? Добавьте модель в нашу общую базу данных.
+                            </p>
+                        </div>
+                        <span class="link-accent mt-3">Добавить релиз →</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Кроссовок 3: New Balance -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card card-hub card-sneaker" style="background-image: url('{{ url_for('static', filename='images/new_balance_1906.jpg') }}');">
+                    <span class="rating-badge">★ 9.5</span>
+                    <div>
+                        <div class="sneaker-brand">NEW BALANCE</div>
+                        <div class="sneaker-name">1906R Metallic</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Тиндер -->
+            <div class="col-12 col-md-6 col-lg-3">
+                <a href="{{ url_for('tinder_for_shoes_view') }}" class="text-decoration-none">
+                    <div class="card card-hub card-hero" style="min-height: 230px; padding: 32px;">
+                        <div>
+                            <span class="section-label" style="color: var(--accent);">НОВЫЙ РЕЖИМ</span>
+                            <h2 class="section-title" style="font-size: 24px;">Тиндер кроссовок</h2>
+                            <p class="section-text" style="color: var(--text-secondary);">
+                                Выбирай лучшие пары в быстрых сравнениях один на один. Повышай рейтинг любимым моделям.
+                            </p>
+                        </div>
+                        <span class="link-accent mt-3">Начать дуэль →</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Кроссовок 4: Asics -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card card-hub card-sneaker" style="background-image: url('{{ url_for('static', filename='images/asics_kayano.jpg') }}');">
+                    <span class="rating-badge">★ 9.4</span>
+                    <div>
+                        <div class="sneaker-brand">ASICS</div>
+                        <div class="sneaker-name">Gel-Kayano 14 Cream</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Кроссовок 5: Jordan -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card card-hub card-sneaker" style="background-image: url('{{ url_for('static', filename='images/jordan_chicago.jpg') }}');">
+                    <span class="rating-badge">★ 9.7</span>
+                    <div>
+                        <div class="sneaker-brand">JORDAN</div>
+                        <div class="sneaker-name">1 Retro High Chicago</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 {% endblock %}

@@ -1,30 +1,58 @@
 {% extends "base.html" %}
 
-{% block title %}Изменить рейтинг — SNKR.RANK{% endblock %}
+{% block title %}Тиндер кроссовок — SNKR.RANK{% endblock %}
 
 {% block content %}
-<div class="text-center py-4">
-    <h1 class="page-title">🔄 Sneaker battle</h1>
-    <p class="text-muted">Выбери модель, которая больше нравится</p>
-</div>
+<div class="main-page">
+    <div class="container">
+        
+        <!-- Заголовок -->
+        <div class="text-center mb-5">
+            <h1 class="section-title" style="font-size: 32px;">Тиндер кроссовок</h1>
+            <p class="section-text" style="color: var(--text-secondary);">
+                Сделай выбор: какой силуэт выглядит круче сегодня?
+            </p>
+        </div>
 
-{% if error %}
-<div class="alert-warning text-center">{{ error }}</div>
-{% else %}
-<div class="row g-4 justify-content-center" id="tinder_container">
-    <div class="col md-5" id="shoe1">
-        {% set shoe=shoe1 %}
-        {% set other_shoe=shoe2 %}
-        {% include 'shoe_card.html' %}
-    </div>
-    <div class="col-md-2 text-center d-flex align-items-center justify-content-center">
-        VS
-    </div>
-    <div class="col md-5" id="shoe2">
-        {% set shoe=shoe2 %}
-        {% set other_shoe=shoe1 %}
-        {% include 'shoe_card.html' %}
+        {% if error %}
+        <div class="alert alert-warning text-center" style="background: rgba(255,68,31,0.1); border: 1px solid rgba(255,68,31,0.3); color: var(--accent); border-radius: 12px;">
+            <a href="{{ url_for('add_view') }}" class="link-light">{{ error }}</a>
+        </div>
+        {% else %}
+        
+        <!-- Баттл -->
+        <div class="row g-4 justify-content-center align-items-stretch">
+            
+            <!-- Карточка 1 -->
+            <div class="col-12 col-md-5">
+                {% set shoe = shoe1 %}
+                {% set other_shoe = shoe2 %}
+                {% include 'shoe_card.html' %}
+            </div>
+            
+            <!-- VS -->
+            <div class="col-12 col-md-2 d-flex align-items-center justify-content-center">
+                <span class="vs-text">VS</span>
+            </div>
+            
+            <!-- Карточка 2 -->
+            <div class="col-12 col-md-5">
+                {% set shoe = shoe2 %}
+                {% set other_shoe = shoe1 %}
+                {% include 'shoe_card.html' %}
+            </div>
+            
+        </div>
+
+        <!-- Пропустить пару -->
+        <div class="text-center mt-4">
+            <a href="{{ url_for('tinder_for_shoes_view') }}" class="link-light">
+                Пропустить пару →
+            </a>
+        </div>
+        
+        {% endif %}
+        
     </div>
 </div>
-{% endif %}
 {% endblock %}
