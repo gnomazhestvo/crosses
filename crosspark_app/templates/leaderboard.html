@@ -16,7 +16,7 @@
         <div class="row g-4">
             {% for shoe in shoes %}
             <div class="col-12 col-md-6 col-lg-4">
-                <div class="card card-hub card-sneaker" style="background-image: url('{{ shoe.image }}'); min-height: 350px;">
+                <div class="card card-hub card-sneaker" style="background-image: url('{{ shoe.image_url }}'); min-height: 350px;">
                     
                     <!-- Рейтинг -->
                     <span class="rating-badge">★ {{ shoe.rating }}</span>

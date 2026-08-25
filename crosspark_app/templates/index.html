@@ -10,7 +10,7 @@
             <!-- Hero-карточка -->
             <div class="col-12 col-lg-5">
                 <div class="card card-hub card-hero">
-                    <div class="icon-box mb-4">👟</div>
+                    <div class="icon-box mb-4">GG</div>
                     <div>
                         <h1 class="section-title" style="font-size: 38px; line-height: 1.2;">
                             Оценивай и открывай лучшие силуэты
@@ -41,24 +41,24 @@
                 </a>
             </div>
 
-            <!-- Кроссовок 1: Nike -->
+            <!-- Кроссовок 1: random_shoes[0] -->
             <div class="col-12 col-md-6 col-lg-4">
-                <div class="card card-hub card-sneaker" style="background-image: url('{{ url_for('static', filename='images/nike_air_max_plus.jpg') }}');">
-                    <span class="rating-badge">★ 9.8</span>
+                <div class="card card-hub card-sneaker" style="background-image: url('{{ random_shoes[0].image_url }}');">
+                    <span class="rating-badge">★ {{ random_shoes[0].rating }}</span>
                     <div>
-                        <div class="sneaker-brand">NIKE</div>
-                        <div class="sneaker-name">Air Max Plus Sunset</div>
+                        <div class="sneaker-brand">{{ random_shoes[0].title.split(' ')[0] }}</div>
+                        <div class="sneaker-name">{{ random_shoes[0].title }}</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Кроссовок 2: Adidas -->
+            <!-- Кроссовок 1: random_shoes[1] -->
             <div class="col-12 col-md-6 col-lg-3">
-                <div class="card card-hub card-sneaker" style="background-image: url('{{ url_for('static', filename='images/adidas_samba.jpg') }}');">
-                    <span class="rating-badge">★ 9.2</span>
+                <div class="card card-hub card-sneaker" style="background-image: url('{{ random_shoes[1].image_url }}');">
+                    <span class="rating-badge">★ {{ random_shoes[1].rating }}</span>
                     <div>
-                        <div class="sneaker-brand">ADIDAS</div>
-                        <div class="sneaker-name">Samba OG Black</div>
+                        <div class="sneaker-brand">{{ random_shoes[2].title.split(' ')[0] }}</div>
+                        <div class="sneaker-name">{{ random_shoes[2].title }}</div>
                     </div>
                 </div>
             </div>
@@ -80,13 +80,13 @@
                 </a>
             </div>
 
-            <!-- Кроссовок 3: New Balance -->
+            <!-- Кроссовок 3: random_shoes[2] -->
             <div class="col-12 col-md-6 col-lg-4">
-                <div class="card card-hub card-sneaker" style="background-image: url('{{ url_for('static', filename='images/new_balance_1906.jpg') }}');">
-                    <span class="rating-badge">★ 9.5</span>
+                <div class="card card-hub card-sneaker" style="background-image: url('{{ random_shoes[2].image_url }}');">
+                    <span class="rating-badge">★ {{ random_shoes[2].rating }}</span>
                     <div>
-                        <div class="sneaker-brand">NEW BALANCE</div>
-                        <div class="sneaker-name">1906R Metallic</div>
+                        <div class="sneaker-brand">{{ random_shoes[2].title.split(' ')[0] }}</div>
+                        <div class="sneaker-name">{{ random_shoes[2].title }}</div>
                     </div>
                 </div>
             </div>

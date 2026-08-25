@@ -7,7 +7,10 @@ from flask import render_template, flash, redirect, url_for, request
 
 @app.route('/')
 def index_view():
-    return render_template('index.html')
+    random_shoes = []
+    for _ in range(len(Cross.query.all())):
+        random_shoes.append(Cross.query.order_by(db.func.random()).first())
+    return render_template('index.html', random_shoes = random_shoes)
 
 
 @app.route('/leaderboard')
@@ -30,29 +33,31 @@ def tinder_for_shoes_view():
 from flask import request, redirect, url_for # убедитесь, что импортирован redirect и url_for
 
 
-@app.route('/vote') # POST больше не нужен, работаем через обычные ссылки
+@app.route('/vote', methods=['POST'])
 def vote_view():
-    # Получаем ID из параметров ссылки: /vote?winner_id=...&loser_id=...
-    winner_id = request.args.get('winner_id', type=int)
-    loser_id = request.args.get('loser_id', type=int)
+    winner_id = request.form.get('winner_id')
+    loser_id = request.form.get('loser_id')
+
+    if not winner_id or not loser_id:
+        flash('Ошибка голосования')
+        return redirect(url_for('tinder_for_shoes_view'))
     
-    if winner_id and loser_id:
-        winner = Cross.query.get(winner_id)
-        loser = Cross.query.get(loser_id)
-        
-        if winner and loser:
-            # Elo-расчёт
-            expected_winner = 1 / (1 + 10 ** ((loser.rating - winner.rating) / 400))
-            expected_loser = 1 - expected_winner
-            
-            K = 32  
-            winner.rating += K * (1 - expected_winner)
-            loser.rating += K * (0 - expected_loser)
+    winner = Cross.query.get(winner_id)
+    loser = Cross.query.get(loser_id)
 
-            db.session.commit()
+    if not winner or not loser:
+        flash('Ошибка: модели не найдены')
+        return redirect(url_for('tinder_for_shoes_view'))
 
-    # После подсчета рейтинга просто перенаправляем пользователя на игру.
-    # Функция tinder_for_shoes_view сама выберет новую случайную пару из базы!
+    expected_winner = 1 / (1 + 10 ** ((loser.rating - winner.rating) / 400))
+    expected_loser = 1 - expected_winner
+    
+    K = 32  
+    winner.rating += round(K * (1 - expected_winner), 0)
+    loser.rating += round(K * (0 - expected_loser), 0)
+
+    db.session.commit()
+
     return redirect(url_for('tinder_for_shoes_view'))
 
 

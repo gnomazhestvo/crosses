@@ -6,7 +6,6 @@
 <div class="main-page">
     <div class="container">
         
-        <!-- Заголовок -->
         <div class="text-center mb-5">
             <h1 class="section-title" style="font-size: 32px;">Тиндер кроссовок</h1>
             <p class="section-text" style="color: var(--text-secondary);">
@@ -16,7 +15,7 @@
 
         {% if error %}
         <div class="alert alert-warning text-center" style="background: rgba(255,68,31,0.1); border: 1px solid rgba(255,68,31,0.3); color: var(--accent); border-radius: 12px;">
-            <a href="{{ url_for('add_view') }}" class="link-light">{{ error }}</a>
+            {{ error }}
         </div>
         {% else %}
         
@@ -25,9 +24,18 @@
             
             <!-- Карточка 1 -->
             <div class="col-12 col-md-5">
-                {% set shoe = shoe1 %}
-                {% set other_shoe = shoe2 %}
-                {% include 'shoe_card.html' %}
+                <div class="card card-hub card-sneaker h-100" style="background-image: url('{{ shoe1.image_url }}'); min-height: 450px;">
+                    <span class="rating-badge">★ {{ shoe1.rating }} Рейтинг</span>
+                    <div>
+                        <div class="sneaker-brand mb-1">{{ shoe1.title.split(' ')[0] }}</div>
+                        <div class="sneaker-name mb-4" style="font-size: 22px;">{{ shoe1.title }}</div>
+                        <form method="POST" action="{{ url_for('vote_view') }}">
+                            <input type="hidden" name="winner_id" value="{{ shoe1.id }}">
+                            <input type="hidden" name="loser_id" value="{{ shoe2.id }}">
+                            <button type="submit" class="btn btn-accent w-100">Выбрать этот силуэт</button>
+                        </form>
+                    </div>
+                </div>
             </div>
             
             <!-- VS -->
@@ -37,18 +45,24 @@
             
             <!-- Карточка 2 -->
             <div class="col-12 col-md-5">
-                {% set shoe = shoe2 %}
-                {% set other_shoe = shoe1 %}
-                {% include 'shoe_card.html' %}
+                <div class="card card-hub card-sneaker h-100" style="background-image: url('{{ shoe2.image_url }}'); min-height: 450px;">
+                    <span class="rating-badge">★ {{ shoe2.rating }} Рейтинг</span>
+                    <div>
+                        <div class="sneaker-brand mb-1">{{ shoe2.title.split(' ')[0] }}</div>
+                        <div class="sneaker-name mb-4" style="font-size: 22px;">{{ shoe2.title }}</div>
+                        <form method="POST" action="{{ url_for('vote_view') }}">
+                            <input type="hidden" name="winner_id" value="{{ shoe2.id }}">
+                            <input type="hidden" name="loser_id" value="{{ shoe1.id }}">
+                            <button type="submit" class="btn btn-accent w-100">Выбрать этот силуэт</button>
+                        </form>
+                    </div>
+                </div>
             </div>
             
         </div>
 
-        <!-- Пропустить пару -->
         <div class="text-center mt-4">
-            <a href="{{ url_for('tinder_for_shoes_view') }}" class="link-light">
-                Пропустить пару →
-            </a>
+            <a href="{{ url_for('tinder_for_shoes_view') }}" class="link-light">Пропустить пару →</a>
         </div>
         
         {% endif %}
